@@ -59,10 +59,10 @@ xgbDMatrixTest = xgb.DMatrix(X_test, y_test)
 # xgDMatrix = xgb.DMatrix(X_train, y_train) #create Dmatrix
 # xgbDMatrixTest = xgb.DMatrix(X_test, y_test)
 
-numberOfParents = 8  # number of parents to start
-numberOfParentsMating = 4  # number of parents that will 交配
+numberOfParents = 20  # number of parents to start
+numberOfParentsMating = 10  # number of parents that will 交配
 numberOfParameters = 7  # number of parameters that will be optimized
-numberOfGenerations =4  # number of genration that will be created
+numberOfGenerations =10  # number of genration that will be created
 #定义总群大小
 populationSize = (numberOfParents, numberOfParameters)
 #使用随机生成的参数初始化总体

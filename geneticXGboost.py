@@ -1,4 +1,4 @@
-# Importing the libraries
+ # Importing the libraries
 import numpy as np
 import pandas as pd
 import xgboost as xgb
@@ -41,16 +41,19 @@ def train_population(population, dMatrixTrain, dMatrixtest, y_test):
             # 'objective':'binary:logistic',
               'learning_rate': population[i][0],
               # 'n_estimators': population[i][1],
+
               'max_depth': int(population[i][2]),
               'min_child_weight': population[i][3],
               'gamma': population[i][4],
               'subsample': population[i][5],
               'colsample_bytree': population[i][6],
               'seed': 24}
-        num_round = 200
+        num_round = int(population[i][1])
+        print(num_round)
         xgbT = xgb.train(param, dMatrixTrain, num_round)
         preds = xgbT.predict(dMatrixtest)
-        preds = preds>0.5
+        print(preds)
+
         fScore.append(fitness_f1score(y_test, preds))
     return fScore
 
@@ -135,5 +138,7 @@ def mutation(crossover, numberOfParameters):
             crossover[idx, parameterSelect] = minMaxValue[parameterSelect, 1]
         if (crossover[idx, parameterSelect] < minMaxValue[parameterSelect, 0]):
             crossover[idx, parameterSelect] = minMaxValue[parameterSelect, 0]
+
+
         return crossover
 
